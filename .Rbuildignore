@@ -1,0 +1,5 @@
+^README\.Rmd$
+^\.github$
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$

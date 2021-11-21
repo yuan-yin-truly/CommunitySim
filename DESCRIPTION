@@ -1,0 +1,14 @@
+Package: CommunitySim
+Title: Simulate an ecological community using Lotka-Volterra and its derived models
+Version: 0.0.0.9000
+Authors@R: 
+    person("Yuan", "Yin", email = "yuan_yin@outlook.com", role = c("aut", "cre"))
+Description: CommunitySim simulates an ecological community, such as a microbiome using Lotka-Volterra based models. In particular, dynamics of species are simulated assuming a third species can influence the intensity of pairwise interactions, referred to as a higher-order interaction.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
