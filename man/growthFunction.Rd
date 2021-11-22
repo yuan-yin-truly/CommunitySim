@@ -26,8 +26,9 @@ A DataFrame, with row being each time point and columns species.
 The abundance vs. time plot is also rendered.
 }
 \description{
-Simulate the dynamics of a community with parameters reflecting the
-interaction intensity among members of the community.
+Simulate the dynamics of the abundance of the species in the community with
+parameters reflecting the interaction intensity among members of the
+community.
 }
 \examples{
 param <- simulateParam(4)

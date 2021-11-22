@@ -22,8 +22,9 @@ glv <- function(time, x, param){
 
 #' Simulate community
 #' 
-#' Simulate the dynamics of a community with parameters reflecting the 
-#' interaction intensity among members of the community.
+#' Simulate the dynamics of the abundance of the species in the community with 
+#' parameters reflecting the interaction intensity among members of the 
+#' community.
 #'
 #' @param N Number of members in the community.
 #' @param alpha 1xN vector of intrinsic growth rate of each member of the 
