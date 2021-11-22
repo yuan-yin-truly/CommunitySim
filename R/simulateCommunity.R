@@ -11,9 +11,9 @@ glv <- function(time, x, param){
 
 growthFunction <- function(N, alpha, c0, ck, init){
   
-  dat <- data.frame(lsoda(init, 0:300, glv, list(alpha=alpha, c0=c0, ck=ck)))
+  dat <- data.frame(deSolve::lsoda(init, 0:300, glv, list(alpha=alpha, c0=c0, ck=ck)))
   
-  matplot(x = dat$time,
+  graphics::matplot(x = dat$time,
           y = dat[,-1],
           typ = 'b',
           xlab = 'Time',
