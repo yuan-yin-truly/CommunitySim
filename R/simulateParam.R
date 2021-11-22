@@ -1,3 +1,24 @@
+#' Simulate parameters for community simulation
+#'
+#' Simulate intrinsic growth rate of species in the community, and their 
+#' interaction intensity. Interaction intensity are mostly negative to reflect 
+#' the competitive nature in the community, and values are drawn from a uniform
+#' distribution.
+#' 
+#' @param N Number of members in the community.
+#'
+#' @return A list of parameters for community simulation. \code{N} is the input.
+#' \code{alpha} is the intrinsic growth rate. \code{c0[i,j]} is the pairwise 
+#' interaction intensity from species \code{j} to species \code{i}. \code{ck} is 
+#' a list of length \code{N}, each matrix \code{k} being the higher order
+#' impact from species j onto the pairwise interaction of \code{i} and \code{k},
+#' felt by \code{k}.
+#' @export
+#'
+#' @examples
+#' re <- simulateParam(5)
+#' alpha <- re$alpha
+#' 
 simulateParam <- function(N){
   
   # Species intrinsic growth rate
