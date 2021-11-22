@@ -31,3 +31,6 @@ Please refer to the vignette with the command:
 ``` r
 vignette("CommunitySim")
 ```
+
+Alternatively you can access the vignette at `doc/CommunitySim.html`
+directly.
