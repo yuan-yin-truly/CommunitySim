@@ -51,10 +51,11 @@ growthFunction <- function(N, alpha, c0, ck, init){
   
   graphics::matplot(x = dat$time,
           y = dat[,-1],
-          typ = 'b',
+          cex = 0.8,
+          type = 'b',
           xlab = 'Time',
           ylab = 'Abundance',
-          main = paste('Modified GLV-density', N,'species'))
+          main = paste('Modified GLV', N,'species'))
   
   return(dat)
 }
