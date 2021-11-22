@@ -11,13 +11,23 @@
 CommunitySim simulates an ecological community, such as a microbiome
 using Lotka-Volterra based models. In particular, dynamics of species
 are simulated assuming a third species can influence the intensity of
-pairwise interactions, referred to as a higher-order interaction.
+pairwise interactions, an assumption referred to as a higher-order
+interaction.
 
 ## Installation
 
-You can install the development version from [GitHub](https://github.com/) with:
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("yuan-yin-truly/CommunitySim")
+```
+
+## How to use
+
+Please refer to the vignette with the command:
+
+``` r
+vignette("CommunitySim")
 ```

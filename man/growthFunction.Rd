@@ -31,6 +31,7 @@ parameters reflecting the interaction intensity among members of the
 community.
 }
 \examples{
+# Simulate parameters for a 4 species community
 param <- simulateParam(4)
 abundance <- growthFunction(param$N, param$alpha, param$c0, param$ck, 
 param$init)

@@ -14,7 +14,6 @@ glv <- function(time, x, param){
   with(param, {
     # sapply does cbind on resulting cols
     dx <- alpha*x + ((c0 + t(sapply(ck, function(m) m%*%x)))%*%x)*x
-    
     return(list(dx))
   })
 }
@@ -41,6 +40,7 @@ glv <- function(time, x, param){
 #' @export
 #'
 #' @examples
+#' # Simulate parameters for a 4 species community
 #' param <- simulateParam(4)
 #' abundance <- growthFunction(param$N, param$alpha, param$c0, param$ck, 
 #' param$init)

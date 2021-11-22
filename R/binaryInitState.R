@@ -11,7 +11,8 @@
 #' @export
 #'
 #' @examples
-#' mask <- function(4)
+#' # Generate all possible binary initial state of a 4 species community 
+#' mask <- binaryInitState(4)
 #' initAbundance <- c(1, 3, 2, 4)
 #' # Initial abundance for all 16 scenarios
 #' allInitAbundance <- t(t(mask) * initAbundance)
