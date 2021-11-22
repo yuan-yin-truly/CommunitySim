@@ -14,6 +14,28 @@ knitr::opts_chunk$set(
 )
 ```
 
+In this vignette, we simulate the dynamics of a community of bacteria after inoculation, and use various popular machine learning algorithms to predict the steady state abundance of the bacteria using their initial abundance. In the process, we demonstrate how to use CommunitySim package to simulate the parameters for community simulation, how to simulate a community, and how to read off the steady state abundance of members of the community.
+
 ```{r setup}
 library(CommunitySim)
 ```
+
+## Basic Functions
+
+In this demonstration, we simulate a community of 10 possible species. 4 parameters are needed to describe and hence simulate the community: `alpha` is 1x10 vector of intrinsic growth rate of each species; `c0` is a 10x10 matrix of pairwise interaction intensity in the community, where `c0[i,j]` is the impact of species `j` on `i` on a per unit basis; `ck` is a list of 10 matrices, each with 10x10 entries, where `ck[[k]][i,j]` is the higher order impact from species `j` onto the pairwise interaction of `i` and `k`, felt by `k`; `init` is a 1x10 vector of initial abundance at the inoculation.
+
+```{r}
+params <- simulateParam(10)
+print(diag(params$c0))
+```
+
+Notice the diagonal of `c0` are all set to `-0.5` to reflect the intra-species competition.
+
+Then we simulate the dynamics of the abundance of species. A DataFrame of 10 columns (for each species) of abundance at each integration time points (default to 300 time points) is returned. A plot of all columns are also displayed.
+
+```{r}
+abundance <- growthFunction(params$N, params$alpha, params$c0, params$ck, params$init)
+```
+
+
+
