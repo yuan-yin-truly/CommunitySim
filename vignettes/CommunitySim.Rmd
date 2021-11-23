@@ -18,7 +18,10 @@ In this vignette, we simulate the dynamics of a community of bacteria after inoc
 
 ```{r setup}
 library(CommunitySim)
+library(reticulate)
+use_condaenv("CommunitySimDemo", required = T)
 ```
+
 
 ## Basic Functions
 
@@ -57,16 +60,26 @@ Next, for each row - an initial abundance, we can run the community simulation o
 abun_list <- apply(init, 1, function(x) growthFunction(N, params$alpha, params$c0, params$ck, x))
 ```
 
-We then use a function provided by CommunitySim to find the steady state abundance of each species for each initial state simulation.
+We then use a function provided by `CommunitySim` to find the steady state abundance of each species for each initial state simulation.
 
 ```{r}
 matrixToSS <- function(densityMatrix){
-  s <- apply(densityMatrix[, 2:(N+1)], MARGIN = 2, FUN=findSteadyState)
+  s <- apply(densityMatrix[, 2:(N+1)], 2, findSteadyState)
   return(s)
 }
 
 SS <- sapply(abun_list, matrixToSS)
 SS <- t(SS)
-#If SS density is too small, set to 0
+#If SS abundance is too small, set to 0
 SS[which(SS < 0.001)] = 0
 ```
+
+We carry on the rest of the study in Python.
+
+```{python}
+import numpy as np
+init = r.init
+SS = r.SS
+```
+
+
