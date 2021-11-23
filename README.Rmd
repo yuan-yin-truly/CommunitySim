@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 CommunitySim simulates an ecological community, such as a microbiome using Lotka-Volterra based models. In particular, dynamics of species are simulated assuming a third species can influence the intensity of pairwise interactions, an assumption referred to as a higher-order interaction.
 
 <center>
-![](man/figures/summary.png){width=20%}
+![](man/figures/summar.png){width=20%}
 </center>
 
 ## Introduction

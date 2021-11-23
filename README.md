@@ -15,7 +15,7 @@ pairwise interactions, an assumption referred to as a higher-order
 interaction.
 
 <center>
-<img src="man/figures/summary.png" style="width:20.0%" />
+<img src="man/figures/summar.png" style="width:20.0%" />
 </center>
 
 ## Introduction
