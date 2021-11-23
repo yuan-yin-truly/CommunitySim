@@ -20,3 +20,4 @@ Imports:
     stats,
     deSolve,
     graphics
+VignetteBuilder: knitr
