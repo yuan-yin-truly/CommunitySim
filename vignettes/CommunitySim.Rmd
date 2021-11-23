@@ -19,7 +19,7 @@ In this vignette, we simulate the dynamics of a community of bacteria after inoc
 ```{r setup}
 library(CommunitySim)
 library(reticulate)
-use_condaenv("CommunitySimDemo", required = T)
+use_condaenv("CommunitySimDemo") # Need a conda env with numpy, matplotlib, and scikit-learn for Machine Learning Case Study
 ```
 
 
