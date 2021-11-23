@@ -138,3 +138,8 @@ for i in range(N):
   rf_prediction[:,i] = pred
 
 ```
+
+Assess prediction accuracy.
+
+
+
