@@ -88,6 +88,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
 from sklearn.ensemble import RandomForestRegressor
 
+N = int(r.N)
 init = r.init
 SS = r.SS
 ```
@@ -96,8 +97,8 @@ SS may contain `nan` when a steady state is not reached. We need to remove those
 
 ```{python}
 nanSamples = np.isnan(SS).any(axis = 1)
-init_clean = init[~nanSample, ]
-SS_clean = SS[~nanSample, ]
+init_clean = init[~nanSamples, ]
+SS_clean = SS[~nanSamples, ]
 
 X_train, X_test, y_train, y_test = train_test_split(init_clean, SS_clean, test_size = 0.2)
 ```
