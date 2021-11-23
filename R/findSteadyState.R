@@ -6,7 +6,7 @@
 #' @param vec An atomic vector of abundance level of a species across time.
 #'
 #' @return A scalar where steady state has reached.
-#'
+#' @export
 #' 
 findSteadyState <- function(vec){
   for (i in 1:(length(vec) - 10)) {

@@ -22,20 +22,51 @@ library(CommunitySim)
 
 ## Basic Functions
 
-In this demonstration, we simulate a community of 10 possible species. 4 parameters are needed to describe and hence simulate the community: `alpha` is 1x10 vector of intrinsic growth rate of each species; `c0` is a 10x10 matrix of pairwise interaction intensity in the community, where `c0[i,j]` is the impact of species `j` on `i` on a per unit basis; `ck` is a list of 10 matrices, each with 10x10 entries, where `ck[[k]][i,j]` is the higher order impact from species `j` onto the pairwise interaction of `i` and `k`, felt by `k`; `init` is a 1x10 vector of initial abundance at the inoculation.
+In this demonstration, we simulate a community of 8 possible species. 4 parameters are needed to describe and hence simulate the community: `alpha` is 1x8 vector of intrinsic growth rate of each species; `c0` is a 8x8 matrix of pairwise interaction intensity in the community, where `c0[i,j]` is the impact of species `j` on `i` on a per unit basis; `ck` is a list of 8 matrices, each with 8x8 entries, where `ck[[k]][i,j]` is the higher order impact from species `j` onto the pairwise interaction of `i` and `k`, felt by `k`; `init` is a 1x8 vector of initial abundance at the inoculation.
 
 ```{r}
-params <- simulateParam(10)
+N <- 8
+params <- simulateParam(N)
 print(diag(params$c0))
 ```
 
 Notice the diagonal of `c0` are all set to `-0.5` to reflect the intra-species competition.
 
-Then we simulate the dynamics of the abundance of species. A DataFrame of 10 columns (for each species) of abundance at each integration time points (default to 300 time points) is returned. A plot of all columns are also displayed.
+Then we simulate the dynamics of the abundance of species. A DataFrame of 8 columns (for each species) of abundance at each integration time points (default to 300 time points) is returned. A plot of all columns are also displayed.
 
 ```{r}
 abundance <- growthFunction(params$N, params$alpha, params$c0, params$ck, params$init)
 ```
 
+## Machine Learning Case Study
 
+Suppose we know an environment has 8 possible bacterial species. When we take sample from the environment, it is not always the case for all 8 species to be sampled. In fact, there are 2^8 possibilities of how many of the 8 species are sampled. If we assume a fixed inoculation abundance for each species, we can generate 2^8 initial conditions.
 
+```{r}
+mask <- binaryInitState(N)
+head(mask)
+
+init <- t(t(mask) * params$init)
+head(data.frame(init))
+```
+where each row correspond to an inoculation abundance when some species are present while the others are not.
+
+Next, for each row - an initial abundance, we can run the community simulation of such inoculation.
+
+```{r fig.show='hide'}
+abun_list <- apply(init, 1, function(x) growthFunction(N, params$alpha, params$c0, params$ck, x))
+```
+
+We then use a function provided by CommunitySim to find the steady state abundance of each species for each initial state simulation.
+
+```{r}
+matrixToSS <- function(densityMatrix){
+  s <- apply(densityMatrix[, 2:(N+1)], MARGIN = 2, FUN=findSteadyState)
+  return(s)
+}
+
+SS <- sapply(abun_list, matrixToSS)
+SS <- t(SS)
+#If SS density is too small, set to 0
+SS[which(SS < 0.001)] = 0
+```

@@ -31,7 +31,7 @@ simulateParam <- function(N){
   diag(c0) <- -0.5
   
   
-  # Higher order effect: impact on each ith species. For each matrix,
+  # Higher order effect: impact on each i-th species. For each matrix,
   # interaction from col (i.e. 3rd species) species.
   ck <- list()
   
