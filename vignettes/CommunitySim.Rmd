@@ -20,7 +20,7 @@ In this vignette, we simulate the dynamics of a community of bacteria after inoc
 library(CommunitySim)
 library(reticulate)
 use_condaenv("CommunitySimDemo")
-# Need a conda env with numpy, matplotlib, and scikit-learn for Machine Learning Case Study
+# Need a conda env with numpy, seaborn, and scikit-learn for Machine Learning Case Study
 ```
 
 
@@ -83,6 +83,8 @@ We carry on the rest of the study in Python because we love Python (no). For 8 s
 
 ```{python}
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
@@ -102,6 +104,27 @@ SS_clean = SS[~nanSamples, ]
 
 X_train, X_test, y_train, y_test = train_test_split(init_clean, SS_clean, test_size = 0.2)
 ```
+
+We can visualize the input and the output using a heatmap.
+
+```{python}
+ax = sns.heatmap(init_clean, cmap="YlGnBu")
+ax.set_xticklabels(["Spec"+str(i) for i in range(1,N+1)])
+plt.setp(ax.get_xticklabels(), rotation=45)
+ax.set_yticks([])
+ax.set_title('Initial community abundance')
+plt.show()
+plt.clf()
+
+ax = sns.heatmap(SS_clean, cmap="YlGnBu")
+ax.set_xticklabels(["Spec"+str(i) for i in range(1,N+1)])
+plt.setp(ax.get_xticklabels(), rotation=45)
+ax.set_yticks([])
+ax.set_title('Steady state community abundance')
+plt.show()
+plt.clf()
+```
+
 
 Linear model.
 
