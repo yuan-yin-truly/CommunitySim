@@ -19,7 +19,8 @@ In this vignette, we simulate the dynamics of a community of bacteria after inoc
 ```{r setup}
 library(CommunitySim)
 library(reticulate)
-use_condaenv("CommunitySimDemo") # Need a conda env with numpy, matplotlib, and scikit-learn for Machine Learning Case Study
+use_condaenv("CommunitySimDemo")
+# Need a conda env with numpy, matplotlib, and scikit-learn for Machine Learning Case Study
 ```
 
 
@@ -42,6 +43,8 @@ abundance <- growthFunction(params$N, params$alpha, params$c0, params$ck, params
 ```
 
 ## Machine Learning Case Study
+
+### Data Preparation
 
 Suppose we know an environment has 8 possible bacterial species. When we take sample from the environment, it is not always the case for all 8 species to be sampled. In fact, there are 2^8 possibilities of how many of the 8 species are sampled. If we assume a fixed inoculation abundance for each species, we can generate 2^8 initial conditions.
 
@@ -74,12 +77,26 @@ SS <- t(SS)
 SS[which(SS < 0.001)] = 0
 ```
 
-We carry on the rest of the study in Python.
+### Model Training and Prediction
+
+We carry on the rest of the study in Python because we love Python (no). For 8 species community, we generated 2^8 = 256 data points. We use 80% of the data to train model and use the rest 20% to predict and assess accuracy. We compare the prediction accuracy of a linear regressor, SVM, and random forrest.
 
 ```{python}
 import numpy as np
+from sklearn.model_selection import train_test_split
 init = r.init
 SS = r.SS
 ```
+
+SS may contain `nan` when a steady state is not reached. We need to remove those samples.
+
+```{python}
+nanSamples = np.isnan(SS).any(axis = 1)
+init_clean = init[~nanSample, ]
+SS_clean = SS[~nanSample, ]
+
+X_train, X_test, Y_train, Y_test = train_test_split(init_clean, SS_clean, test_size = 0.2)
+```
+
 
 
