@@ -55,8 +55,4 @@ devtools::install_github("yuan-yin-truly/CommunitySim")
 
 ## How to use
 
-Please refer to the vignette with the command:
-
-``` r
-vignette("CommunitySim")
-```
+Please refer to the vignette at `doc/CommunitySim.html`.
