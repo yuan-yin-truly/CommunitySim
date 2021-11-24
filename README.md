@@ -30,8 +30,9 @@ other species; b_ij is the impact of other species on the growth of i,
 on a per unit basis.
 
 The higher-order interaction states that a third species can not only
-interact with other species pairwise, but also influence the intensity
-of the pairwise interaction, which is modeled by b_ij:
+interact with other species in a pairwise manner, but also influence the
+intensity of existing pairwise interactions in the community, which is
+modeled by b_ij:
 
 <img src="man/figures/glv.png" style="width:20.0%" />
 
@@ -39,7 +40,7 @@ Here the pairwise interaction intensity is modeled as a flat rate
 modified by the abundance of third species, x_k.
 
 With varying interaction intensity and initial abundance of species, the
-change in abundance of the community over time can be studies by solving
+change in abundance of the community over time can be studied by solving
 the coupled ODEs. This package provides a simulation of above stated
 parameters, and a solver for the coupled ODEs.
 
