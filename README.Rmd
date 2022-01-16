@@ -52,4 +52,4 @@ devtools::install_github("yuan-yin-truly/CommunitySim")
 
 ## How to use
 
-Please refer to the vignette at `doc/CommunitySim.html`.
+Please refer to the vignette at `doc/CommunitySim.html` or `doc/CommunitySim.pdf`.

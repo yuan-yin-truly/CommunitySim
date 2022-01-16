@@ -25,19 +25,19 @@ the abundance of all members in the community:
 
 <img src="man/figures/lv.png" style="width:20.0%" />
 
-where alpha_i is species i’s growth rate without the influence from
-other species; b_ij is the impact of other species on the growth of i,
+where alpha\_i is species i’s growth rate without the influence from
+other species; b\_ij is the impact of other species on the growth of i,
 on a per unit basis.
 
 The higher-order interaction states that a third species can not only
 interact with other species in a pairwise manner, but also influence the
 intensity of existing pairwise interactions in the community, which is
-modeled by b_ij:
+modeled by b\_ij:
 
 <img src="man/figures/glv.png" style="width:20.0%" />
 
 Here the pairwise interaction intensity is modeled as a flat rate
-modified by the abundance of third species, x_k.
+modified by the abundance of third species, x\_k.
 
 With varying interaction intensity and initial abundance of species, the
 change in abundance of the community over time can be studied by solving
@@ -56,4 +56,5 @@ devtools::install_github("yuan-yin-truly/CommunitySim")
 
 ## How to use
 
-Please refer to the vignette at `doc/CommunitySim.html`.
+Please refer to the vignette at `doc/CommunitySim.html` or
+`doc/CommunitySim.pdf`.
